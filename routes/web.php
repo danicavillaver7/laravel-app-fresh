@@ -65,3 +65,11 @@ Route::post('/register', [UserController::class, 'store']);
 Route::get('/register/show/{user}', [UserController::class, 'show']);
 Route::patch('/register/update/{user}', [UserController::class, 'update']);
 Route::delete('/register/delete/{user}', [UserController::class, 'destroy']);
+
+use App\Http\Controllers\BookController;
+
+Route::get('/', function () {
+    return redirect()->route('books.index');
+});
+
+Route::resource('books', BookController::class);
