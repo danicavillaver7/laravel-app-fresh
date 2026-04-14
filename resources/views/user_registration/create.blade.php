@@ -74,6 +74,12 @@
                             placeholder="+63 900 000 0000" />
                     </div>
                 </div>
+                
+                    @if ($errors->any())
+                        <div style="color:red;">
+                            {{ $errors->first() }}
+                        </div>
+                    @endif
 
                 <div class="mt-12 flex items-center justify-end gap-x-4 pt-8 border-t border-white/10">
                     <a href="/register" class="px-6 py-2.5 text-sm font-bold text-white hover:text-red-400 transition-colors">

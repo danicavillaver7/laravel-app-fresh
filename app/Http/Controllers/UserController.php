@@ -30,8 +30,21 @@ class UserController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+public function store(Request $request)
 {
+    $request->validate([
+        'email' => 'required|email',
+    ]);
+
+    // check if email already exists
+    $existingUser = User::where('email', $request->email)->first();
+
+    if ($existingUser) {
+        return redirect()->back()
+            ->withErrors(['email' => 'The email you entered is already taken.'])
+            ->withInput();
+    }
+
     User::create([
         'first_name' => $request->first_name,
         'last_name' => $request->last_name,
@@ -44,7 +57,7 @@ class UserController extends Controller
         'password' => bcrypt($request->password),
     ]);
 
-    return redirect('/register');
+    return redirect('/register')->with('success', 'User registered successfully!');
 }
 
     /**
