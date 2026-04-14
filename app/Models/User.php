@@ -40,14 +40,4 @@ class User extends Authenticatable
         ];
     }
 
-    protected $fillable = [
-        'first_name',
-        'last_name',
-        'middle_name',
-        'nickname',
-        'age',
-        'address',
-        'contact_number',
-        'email',
-    ];
 }
